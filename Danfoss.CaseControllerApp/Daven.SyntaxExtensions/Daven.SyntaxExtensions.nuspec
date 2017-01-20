@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Daven.Framework.Syntax extends existed C# syntax to allow avoiding boilerplate code.</description>
+    <releaseNotes>Daven.Framework.Syntax extends existed C# syntax to allow avoiding boilerplate code.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>C# syntax crossplatform xamarin</tags>
+  </metadata>
+</package>
