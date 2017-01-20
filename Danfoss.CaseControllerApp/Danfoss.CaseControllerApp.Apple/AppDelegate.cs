@@ -1,10 +1,16 @@
 ﻿using Foundation;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.Bindings.Target.Construction;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.iOS.Platform;
+using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform;
 using UIKit;
 
 namespace Danfoss.CaseControllerApp.Apple
 {
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : MvxApplicationDelegate
     {
         public override UIWindow Window
         {
@@ -16,7 +22,13 @@ namespace Danfoss.CaseControllerApp.Apple
         {
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            Window.RootViewController = new UIViewController();
+            var presenter = new MvxIosViewPresenter(this, Window);
+
+            var setup = new Setup(this, presenter);
+            setup.Initialize();
+
+            var startup = Mvx.Resolve<IMvxAppStart>();
+            startup.Start();
 
             Window.MakeKeyAndVisible();
 

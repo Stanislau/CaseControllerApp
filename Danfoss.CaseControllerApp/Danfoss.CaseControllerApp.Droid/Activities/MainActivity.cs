@@ -1,8 +1,7 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 
-namespace Danfoss.CaseControllerApp.Droid
+namespace Danfoss.CaseControllerApp.Droid.Activities
 {
     [Activity(Label = "Danfoss.CaseControllerApp.Droid", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity

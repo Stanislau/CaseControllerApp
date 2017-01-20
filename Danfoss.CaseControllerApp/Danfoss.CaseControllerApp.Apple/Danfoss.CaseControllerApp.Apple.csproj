@@ -86,8 +86,17 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseViewController.cs" />
+    <Compile Include="Controllers\HelloWorldViewController.cs" />
+    <Compile Include="Exceptions\DynamicLayoutException.cs" />
+    <Compile Include="Exceptions\UserInterfaceException.cs" />
+    <Compile Include="Extensions\DynamicLayout.cs" />
+    <Compile Include="Extensions\DynamicSection.cs" />
+    <Compile Include="Extensions\FluentLayoutSyntaxExtension.cs" />
+    <Compile Include="Extensions\MvvmCrossExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Setup.cs" />
     <Content Include="FodyWeavers.xml" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
