@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BluetoothService.cs" />
+    <Compile Include="Services\IBluetoothService.cs" />
     <Compile Include="ViewModels\HelloWorldViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
