@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Danfoss.CaseControllerApp.Core.Services
 {
-    public class BluetoothService : IBluetoothService
+    public class BackgroundService : IBackgroundService
     {
         public IObservable<int> IndexChanged => _indexChanged.AsObservable();
 
