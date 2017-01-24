@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using Acr.Ble;
 using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.ViewModels
@@ -27,7 +28,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         public IMvxCommand CharacteristicSelected => new MvxCommand<CharacteristicViewModel>(characteristic =>
         {
-            ShowViewModel<CharacteristicViewModel>(new CharacteristicParameters() { Device = _deviceUuid, Service = Uuid, Characteristic = characteristic.Uuid });
+            ShowViewModel<CharacteristicViewModel>(new CharacteristicList() { Device = _deviceUuid, Service = Uuid, Characteristic = characteristic.Uuid });
         });
 
         public string ConnectionAction => _service.IsScanning ? "Stop" : "Start";
@@ -46,9 +47,9 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             }
         });
 
-        public void Init(ServiceParameters parameter)
+        public void Init(ServiceLink link)
         {
-            Set(parameter.Device, parameter.Service);
+            Set(link.Device, link.Service);
         }
 
         public GattServiceViewModel Set(Guid deviceUuid, Guid serviceUuid)

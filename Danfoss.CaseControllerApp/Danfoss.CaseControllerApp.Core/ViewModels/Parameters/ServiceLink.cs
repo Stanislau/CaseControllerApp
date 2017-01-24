@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Parameters
 {
-    public class ServiceParameters
+    public class ServiceLink
     {
         public Guid Device { get; set; }
 

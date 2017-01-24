@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +9,7 @@ using Acr.Ble;
 
 namespace Danfoss.CaseControllerApp.Core.Services
 {
-    public class CaseController
+    public class CaseController : ISyncable<CaseControllerService>
     {
         public IDevice Device { get; }
 
@@ -20,13 +21,15 @@ namespace Danfoss.CaseControllerApp.Core.Services
 
         public IObservable<string> Name => _name.AsObservable();
 
-        public ObservableCollection<CaseControllerService> Services { get; } = new ObservableCollection<CaseControllerService>();
+        public IEnumerable<CaseControllerService> Items => _items;
 
-        public IObservable<CaseControllerService> ServiceAdded => _serviceAdded.AsObservable();
+        private readonly IList<CaseControllerService> _items = new List<CaseControllerService>();
 
-        public IObservable<object> ServicesCleared => _servicesCleared.AsObservable();
+        public IObservable<CaseControllerService> Added => _serviceAdded.AsObservable();
 
-        private Subject<object> _servicesCleared = new Subject<object>(); 
+        public IObservable<object> Cleared => _servicesCleared.AsObservable();
+
+        private readonly Subject<object> _servicesCleared = new Subject<object>(); 
         
         private Subject<CaseControllerService> _serviceAdded = new Subject<CaseControllerService>(); 
 
@@ -85,11 +88,11 @@ namespace Danfoss.CaseControllerApp.Core.Services
 
             _scanNative = Device.WhenServiceDiscovered().Subscribe(gattService =>
             {
-                var existed = Services.FirstOrDefault(x => x.Uuid == gattService.Uuid);
+                var existed = Items.FirstOrDefault(x => x.Uuid == gattService.Uuid);
                 if (existed == null)
                 {
                     var service = new CaseControllerService(gattService, this);
-                    Services.Add(service);
+                    _items.Add(service);
                     _serviceAdded.OnNext(service);
                     Debug.WriteLine("Service OnNext " + service.Uuid);
                 }
@@ -106,7 +109,7 @@ namespace Danfoss.CaseControllerApp.Core.Services
 
             _scanNative?.Dispose();
 
-            Services.Clear();
+            _items.Clear();
             _servicesCleared.OnNext(null);
 
             Device.Disconnect();
@@ -124,7 +127,7 @@ namespace Danfoss.CaseControllerApp.Core.Services
 
         public CaseControllerService GetService(Guid uuid)
         {
-            return Services.FirstOrDefault(x => x.Uuid == uuid);
+            return Items.FirstOrDefault(x => x.Uuid == uuid);
         }
     }
 }

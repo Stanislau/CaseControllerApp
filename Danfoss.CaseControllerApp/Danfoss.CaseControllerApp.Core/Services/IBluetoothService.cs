@@ -1,22 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Acr.Ble;
-using Danfoss.CaseControllerApp.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.Services
 {
-    public interface IBluetoothService
+    public interface IBluetoothService : ISyncable<CaseController>
     {
-        IObservable<CaseController> DeviceAdded { get; }
-            
-        ObservableCollection<CaseController> Devices { get; }
-
         void Start();
 
         void Stop();
 
         CaseController GetDevice(Guid uuid);
-
-        IObservable<IGattService> StartDiscoveringServices(Guid deviceId);
     }
 }

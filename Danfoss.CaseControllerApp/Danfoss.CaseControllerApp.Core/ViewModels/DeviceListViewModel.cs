@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Acr.Ble;
 using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using Daven.SyntaxExtensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -17,14 +18,14 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         public IMvxCommand DeviceSelected => new MvxCommand<DeviceViewModel>(device =>
         {
-            ShowViewModel<DeviceViewModel>(new GuidParameters() { Uuid = device.Uuid });
+            ShowViewModel<DeviceViewModel>(new DeviceLink() { Device = device.Uuid });
         });
 
         public override void Start()
         {
             base.Start();
 
-            SyncBluetoothWithDevicesCollection();
+            _service.SyncTo(Devices, convert: caseController => Mvx.IocConstruct<DeviceViewModel>().Set(caseController.Uuid));
         }
 
         private readonly IBluetoothService _service;
@@ -33,20 +34,5 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
         {
             _service = service;
         }
-
-        private void SyncBluetoothWithDevicesCollection()
-        {
-            foreach (var scanResult in _service.Devices)
-            {
-                Devices.Add(Create(scanResult));
-            }
-
-            _service.DeviceAdded.Subscribe(device =>
-            {
-                Devices.Add(Create(device));
-            });
-        }
-
-        private DeviceViewModel Create(CaseController scanResult) => Mvx.IocConstruct<DeviceViewModel>().Set(scanResult.Device.Uuid);
     }
 }

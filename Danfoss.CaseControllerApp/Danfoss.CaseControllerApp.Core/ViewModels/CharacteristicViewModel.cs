@@ -1,6 +1,7 @@
 using System;
 using Acr.Ble;
 using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.ViewModels
@@ -19,9 +20,9 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             _ble = ble;
         }
 
-        public void Init(CharacteristicParameters parameter)
+        public void Init(CharacteristicList list)
         {
-            Set(parameter.Device, parameter.Service, parameter.Characteristic);
+            Set(list.Device, list.Service, list.Characteristic);
         }
 
         public CharacteristicViewModel Set(Guid device, Guid service, Guid characteristic)

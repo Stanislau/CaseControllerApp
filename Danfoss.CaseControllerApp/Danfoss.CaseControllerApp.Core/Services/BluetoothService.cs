@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -10,11 +12,17 @@ namespace Danfoss.CaseControllerApp.Core.Services
 {
     public class BluetoothService : IBluetoothService
     {
-        public IObservable<CaseController> DeviceAdded => _deviceAdded.AsObservable();
+        public IObservable<CaseController> Added => _deviceAdded.AsObservable();
 
-        private Subject<CaseController> _deviceAdded = new Subject<CaseController>();
+        private readonly Subject<CaseController> _deviceAdded = new Subject<CaseController>();
 
-        public ObservableCollection<CaseController> Devices { get; } = new ObservableCollection<CaseController>();
+        public IEnumerable<CaseController> Items => _items;
+
+        private readonly IList<CaseController> _items = new List<CaseController>();
+
+        public IObservable<object> Cleared => _cleared.AsObservable();
+
+        private readonly Subject<object> _cleared = new Subject<object>();
 
         private IDisposable _scan;
 
@@ -22,11 +30,11 @@ namespace Danfoss.CaseControllerApp.Core.Services
         {
             _scan = BleAdapter.Current.Scan().Subscribe(scanResult =>
             {
-                var existed = Devices.FirstOrDefault(x => x.Device.Uuid == scanResult.Device.Uuid);
+                var existed = Items.FirstOrDefault(x => x.Device.Uuid == scanResult.Device.Uuid);
                 if (existed == null)
                 {
                     var caseController = new CaseController(scanResult, this);
-                    Devices.Add(caseController);
+                    _items.Add(caseController);
                     _deviceAdded.OnNext(caseController);
                 }
                 else
@@ -43,12 +51,9 @@ namespace Danfoss.CaseControllerApp.Core.Services
 
         public CaseController GetDevice(Guid uuid)
         {
-            return Devices.First(x => x.Device.Uuid == uuid);
+            return Items.First(x => x.Device.Uuid == uuid);
         }
 
-        public IObservable<IGattService> StartDiscoveringServices(Guid deviceId)
-        {
-            return GetDevice(deviceId).Device.WhenServiceDiscovered();
-        }
+        
     }
 }

@@ -1,8 +1,8 @@
 using System;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Parameters
 {
-    public class CharacteristicParameters
+    public class CharacteristicList
     {
         public Guid Device { get; set; }
 

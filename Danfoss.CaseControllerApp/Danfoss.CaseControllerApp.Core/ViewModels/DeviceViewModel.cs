@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Acr.Ble;
 using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.ViewModels
@@ -30,7 +31,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         public IMvxCommand ServiceSelected => new MvxCommand<GattServiceViewModel>(service =>
         {
-            ShowViewModel<GattServiceViewModel>(new ServiceParameters() { Device = Uuid, Service = service.Uuid });
+            ShowViewModel<GattServiceViewModel>(new ServiceLink() { Device = Uuid, Service = service.Uuid });
         });
 
         public DeviceViewModel(IBluetoothService service)
@@ -38,16 +39,16 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             _service = service;
         }
 
-        public void Init(GuidParameters parameter)
+        public void Init(DeviceLink parameter)
         {
-            Set(parameter.Uuid);
+            Set(parameter.Device);
         }
 
         public DeviceViewModel Set(Guid uuid)
         {
             if (Uuid.Equals(Guid.Empty) == false && Uuid.Equals(uuid) == false)
             {
-                UserDialogs.Instance.Alert("Uuid override.");
+                UserDialogs.Instance.Alert("Device override.");
             }
 
             if (Uuid.Equals(uuid)) return this;
@@ -62,23 +63,10 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
             _device.State.Subscribe(state => State = state);
 
-            foreach (var service in _device.Services)
-            {
-                GattServices.Add(CreateGattService(service.Uuid));
-            }
-
-            _device.ServiceAdded.Subscribe(service =>
-            {
-                GattServices.Add(CreateGattService(service.Uuid));
-                Debug.WriteLine("Added: " + service.Uuid);
-            });
-
-            _device.ServicesCleared.Subscribe(empty => GattServices.Clear());
+            _device.SyncTo(GattServices, convert: (service) => new GattServiceViewModel(_service).Set(_device.Uuid, service.Uuid));
 
             return this;
         }
-
-        private GattServiceViewModel CreateGattService(Guid uuid) => new GattServiceViewModel(_service).Set(_device.Uuid, uuid);
 
         public IMvxCommand ToggleConnection => new MvxCommand(() =>
         {

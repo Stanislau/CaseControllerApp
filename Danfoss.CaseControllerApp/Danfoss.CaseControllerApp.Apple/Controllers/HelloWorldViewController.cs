@@ -5,7 +5,7 @@ using UIKit;
 
 namespace Danfoss.CaseControllerApp.Apple.Controllers
 {
-    public class HelloWorldViewController : BaseViewController<HelloWorldViewModel>
+    public class HelloWorldViewController : BaseViewController<DeviceListViewModel>
     {
         public override void ViewDidLoad()
         {
@@ -45,14 +45,14 @@ namespace Danfoss.CaseControllerApp.Apple.Controllers
 
                 );
 
-            AddFluentBindings(set =>
-            {
-                set.Bind(helloWorldLabel).To(vm => vm.Title);
+            //AddFluentBindings(set =>
+            //{
+            //    set.Bind(helloWorldLabel).To(vm => vm.Title);
 
-                set.Bind(cancel).To(x => x.Cancel);
+            //    set.Bind(cancel).To(x => x.Cancel);
 
-                set.Bind(resume).To(x => x.Scan);
-            });
+            //    set.Bind(resume).To(x => x.Scan);
+            //});
         }
     }
 }
