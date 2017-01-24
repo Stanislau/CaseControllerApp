@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using Acr.Ble;
+using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 
 namespace Danfoss.CaseControllerApp.Core.Services.Bluetooth.AcrBluetooth
@@ -108,10 +109,12 @@ namespace Danfoss.CaseControllerApp.Core.Services.Bluetooth.AcrBluetooth
         {
             //_ble.Stop();
 
-            _device.Connect().Subscribe((connection) =>
+            _device.Connect().Subscribe(onNext: (connection) =>
             {
                 StartScan();
-            });
+            }, 
+            onCompleted: () => UserDialogs.Instance.Alert("Connection completed."),
+            onError: exception => UserDialogs.Instance.Alert("Exception while connect " + exception.ToString()));
         }
 
         public ICaseControllerService GetService(Guid uuid)
