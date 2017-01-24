@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Danfoss.CaseControllerApp.Core.Services;
 using Danfoss.CaseControllerApp.Core.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -29,7 +30,19 @@ namespace Danfoss.CaseControllerApp.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton(); 
 
-            Mvx.RegisterSingleton<IMvxAppStart>(new MvxAppStart<HelloWorldViewModel>());
+            Mvx.RegisterSingleton<IBluetoothService2>(() => new BluetoothService2());
+
+            Mvx.RegisterSingleton<IMvxAppStart>(new CustomAppStart());
+        }
+    }
+
+    public class CustomAppStart : MvxNavigatingObject, IMvxAppStart
+    {
+        public void Start(object hint = null)
+        {
+            Mvx.Resolve<IBluetoothService2>().Start();
+
+            ShowViewModel<DeviceListViewModel>();
         }
     }
 }

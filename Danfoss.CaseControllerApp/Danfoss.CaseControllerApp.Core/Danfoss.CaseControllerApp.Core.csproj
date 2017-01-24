@@ -49,8 +49,18 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BackgroundService.cs" />
     <Compile Include="Services\BluetoothService.cs" />
+    <Compile Include="Services\BluetoothService2.cs" />
+    <Compile Include="Services\CaseController.cs" />
+    <Compile Include="Services\CaseControllerService.cs" />
+    <Compile Include="Services\IBackgroundService.cs" />
     <Compile Include="Services\IBluetoothService.cs" />
+    <Compile Include="Services\IBluetoothService2.cs" />
+    <Compile Include="ViewModels\DeviceListViewModel.cs" />
+    <Compile Include="ViewModels\DeviceViewModel.cs" />
+    <Compile Include="ViewModels\GattServiceViewModel.cs" />
+    <Compile Include="ViewModels\GuidParameters.cs" />
     <Compile Include="ViewModels\HelloWorldViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

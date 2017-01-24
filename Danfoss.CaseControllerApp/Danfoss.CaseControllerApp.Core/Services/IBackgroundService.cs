@@ -2,7 +2,7 @@ using System;
 
 namespace Danfoss.CaseControllerApp.Core.Services
 {
-    public interface IBluetoothService
+    public interface IBackgroundService
     {
         IObservable<int> IndexChanged { get; }
 

@@ -3,17 +3,13 @@
               xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView 
-        android:layout_width="fill_parent"
+    android:layout_height="50dp">
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        local:MvxBind="Text Title"
-        />
-    <Button 
-        android:layout_width="fill_parent"
+        local:MvxBind="Text Description" />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        local:MvxBind="Click Scan"
-        />
+        local:MvxBind="Text Uuid" />
 </LinearLayout>

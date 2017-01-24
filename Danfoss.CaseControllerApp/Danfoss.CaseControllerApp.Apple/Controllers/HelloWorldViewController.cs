@@ -23,7 +23,7 @@ namespace Danfoss.CaseControllerApp.Apple.Controllers
             Add(cancel);
 
             var resume = new UIButton();
-            resume.SetTitle("Resume", UIControlState.Normal);
+            resume.SetTitle("Start", UIControlState.Normal);
             resume.SetTitleColor(UIColor.Green, UIControlState.Normal);
             Add(resume);
 
@@ -51,7 +51,7 @@ namespace Danfoss.CaseControllerApp.Apple.Controllers
 
                 set.Bind(cancel).To(x => x.Cancel);
 
-                set.Bind(resume).To(x => x.Resume);
+                set.Bind(resume).To(x => x.Scan);
             });
         }
     }

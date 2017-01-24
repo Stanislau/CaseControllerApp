@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Linq;
+using System.Reactive.Linq;
+using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.Services;
+using Daven.SyntaxExtensions;
 using MvvmCross.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.ViewModels
@@ -11,14 +15,18 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
         public HelloWorldViewModel(IBluetoothService service)
         {
             _service = service;
-            _service.IndexChanged.Subscribe(index => Title = index.ToString());
+
+            _service.ScanCompleted
+                .Subscribe((devices) => UserDialogs.Instance.Alert(devices.Select(x => x.AdvertisementData.LocalName).JoinStrings("\n"), "Device List"));
+
             Cancel = new MvxCommand(() =>
             {
-                _service.Stop();
+                //_service.Stop();
             });
-            Resume = new MvxCommand(() =>
+
+            Scan = new MvxCommand(() =>
             {
-                _service.Resume();
+                _service.Scan();
             });
         }
 
@@ -28,11 +36,11 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         public IMvxCommand Resume { get; }
 
+        public IMvxCommand Scan { get; }
+
         public override void Start()
         {
             base.Start();
-
-            _service.Start();
         }
     }
 }
