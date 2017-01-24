@@ -30,7 +30,7 @@ namespace Danfoss.CaseControllerApp.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton(); 
 
-            Mvx.RegisterSingleton<IBluetoothService2>(() => new BluetoothService2());
+            Mvx.RegisterSingleton<IBluetoothService>(() => new BluetoothService());
 
             Mvx.RegisterSingleton<IMvxAppStart>(new CustomAppStart());
         }
@@ -40,7 +40,7 @@ namespace Danfoss.CaseControllerApp.Core
     {
         public void Start(object hint = null)
         {
-            Mvx.Resolve<IBluetoothService2>().Start();
+            Mvx.Resolve<IBluetoothService>().Start();
 
             ShowViewModel<DeviceListViewModel>();
         }

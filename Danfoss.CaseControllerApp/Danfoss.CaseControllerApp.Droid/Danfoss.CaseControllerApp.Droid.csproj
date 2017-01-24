@@ -160,6 +160,8 @@
   <ItemGroup>
     <Compile Include="Activities\DeviceActivity.cs" />
     <Compile Include="Activities\DeviceListActivity.cs" />
+    <Compile Include="Activities\GattCharacteristicActivity.cs" />
+    <Compile Include="Activities\GattServiceActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,6 +188,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ServiceItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Service.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CharacteristicItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Characteristic.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -7,19 +7,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Name" />
+        local:MvxBind="Text Description" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text State" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text MacAddress" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text Rssi" />
+        local:MvxBind="Text Uuid" />
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -29,5 +21,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         local:MvxItemTemplate="@layout/serviceitem"
-        local:MvxBind="ItemsSource GattServices; ItemClick ServiceSelected" />
+        local:MvxBind="ItemsSource Characteristics; ItemClick CharacteristicSelected" />
 </LinearLayout>

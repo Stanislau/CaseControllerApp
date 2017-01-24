@@ -27,9 +27,9 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             SyncBluetoothWithDevicesCollection();
         }
 
-        private readonly IBluetoothService2 _service;
+        private readonly IBluetoothService _service;
 
-        public DeviceListViewModel(IBluetoothService2 service)
+        public DeviceListViewModel(IBluetoothService service)
         {
             _service = service;
         }

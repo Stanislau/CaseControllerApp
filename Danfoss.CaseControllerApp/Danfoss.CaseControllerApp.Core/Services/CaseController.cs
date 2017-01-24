@@ -40,9 +40,9 @@ namespace Danfoss.CaseControllerApp.Core.Services
         private IDisposable _stateNative;
         private IDisposable _scanNative;
 
-        private readonly IBluetoothService2 _ble;
+        private readonly IBluetoothService _ble;
 
-        public CaseController(IScanResult scanResult, IBluetoothService2 ble)
+        public CaseController(IScanResult scanResult, IBluetoothService ble)
         {
             _ble = ble;
             Device = scanResult.Device;
@@ -120,6 +120,11 @@ namespace Danfoss.CaseControllerApp.Core.Services
             {
                 StartScan();
             });
+        }
+
+        public CaseControllerService GetService(Guid uuid)
+        {
+            return Services.FirstOrDefault(x => x.Uuid == uuid);
         }
     }
 }

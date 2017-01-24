@@ -10,7 +10,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 {
     public class DeviceViewModel : MvxViewModel
     {
-        private readonly IBluetoothService2 _service;
+        private readonly IBluetoothService _service;
 
         public string Name { get; set; }
 
@@ -26,7 +26,14 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         private CaseController _device;
 
-        public DeviceViewModel(IBluetoothService2 service)
+        public string ConnectionAction => State == ConnectionStatus.Connected ? "Disconnect" : "Connect";
+
+        public IMvxCommand ServiceSelected => new MvxCommand<GattServiceViewModel>(service =>
+        {
+            ShowViewModel<GattServiceViewModel>(new ServiceParameters() { Device = Uuid, Service = service.Uuid });
+        });
+
+        public DeviceViewModel(IBluetoothService service)
         {
             _service = service;
         }
@@ -57,12 +64,12 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
             foreach (var service in _device.Services)
             {
-                GattServices.Add(new GattServiceViewModel(service));
+                GattServices.Add(CreateGattService(service.Uuid));
             }
 
             _device.ServiceAdded.Subscribe(service =>
             {
-                GattServices.Add(new GattServiceViewModel(service));
+                GattServices.Add(CreateGattService(service.Uuid));
                 Debug.WriteLine("Added: " + service.Uuid);
             });
 
@@ -70,6 +77,8 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
             return this;
         }
+
+        private GattServiceViewModel CreateGattService(Guid uuid) => new GattServiceViewModel(_service).Set(_device.Uuid, uuid);
 
         public IMvxCommand ToggleConnection => new MvxCommand(() =>
         {
@@ -83,6 +92,6 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             }
         });
 
-        public string ConnectionAction => State == ConnectionStatus.Connected ? "Disconnect" : "Connect";
+        
     }
 }
