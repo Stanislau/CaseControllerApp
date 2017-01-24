@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 
-namespace Danfoss.CaseControllerApp.Core.Services
+namespace Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common
 {
     public static class SyncFacade
     {
@@ -12,7 +13,7 @@ namespace Danfoss.CaseControllerApp.Core.Services
                 target.Add(convert(scanResult));
             }
 
-            var add = syncable.Added.Subscribe(device =>
+            var add = syncable.ItemAdded.Subscribe(device =>
             {
                 target.Add(convert(device));
             });

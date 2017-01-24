@@ -1,62 +1,51 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using Acr.Ble;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 
-namespace Danfoss.CaseControllerApp.Core.Services
+namespace Danfoss.CaseControllerApp.Core.Services.Bluetooth.AcrBluetooth
 {
-    public class CaseController : ISyncable<CaseControllerService>
+    public class CaseController : ICaseController
     {
-        public IDevice Device { get; }
-
-        public Guid Uuid => Device.Uuid;
-
+        public Guid Uuid => _device.Uuid;
         public IObservable<int> Rssi => _rssi.AsObservable();
-
         public IObservable<ConnectionStatus> State => _state.AsObservable();
-
         public IObservable<string> Name => _name.AsObservable();
 
         public IEnumerable<CaseControllerService> Items => _items;
-
-        private readonly IList<CaseControllerService> _items = new List<CaseControllerService>();
-
-        public IObservable<CaseControllerService> Added => _serviceAdded.AsObservable();
-
+        public IObservable<CaseControllerService> ItemAdded => _serviceAdded.AsObservable();
         public IObservable<object> Cleared => _servicesCleared.AsObservable();
 
+        private readonly IList<CaseControllerService> _items = new List<CaseControllerService>();
         private readonly Subject<object> _servicesCleared = new Subject<object>(); 
-        
-        private Subject<CaseControllerService> _serviceAdded = new Subject<CaseControllerService>(); 
-
-        private BehaviorSubject<string> _name; 
-
-        private BehaviorSubject<ConnectionStatus> _state; 
-
-        private BehaviorSubject<int> _rssi;
+        private readonly Subject<CaseControllerService> _serviceAdded = new Subject<CaseControllerService>(); 
+        private readonly BehaviorSubject<string> _name; 
+        private readonly BehaviorSubject<ConnectionStatus> _state; 
+        private readonly BehaviorSubject<int> _rssi;
 
         private IDisposable _rssiNative;
-        private IDisposable _stateNative;
         private IDisposable _scanNative;
 
         private readonly IBluetoothService _ble;
 
+        private readonly IDevice _device;
+
         public CaseController(IScanResult scanResult, IBluetoothService ble)
         {
             _ble = ble;
-            Device = scanResult.Device;
+            _device = scanResult.Device;
 
             _rssi = new BehaviorSubject<int>(scanResult.Rssi);
-            _state = new BehaviorSubject<ConnectionStatus>(Device.Status);
+            _state = new BehaviorSubject<ConnectionStatus>(_device.Status);
             _name = new BehaviorSubject<string>(scanResult.Device.Name);
 
             scanResult.Device.WhenNameUpdated().Subscribe(newName => _name.OnNext(newName));
 
-            _stateNative = Device.WhenStatusChanged().Subscribe(newStatus =>
+            _device.WhenStatusChanged().Subscribe(newStatus =>
             {
                 _state.OnNext(newStatus);
 
@@ -66,7 +55,7 @@ namespace Danfoss.CaseControllerApp.Core.Services
 
                     _rssiNative?.Dispose();
 
-                    _rssiNative = Device.WhenRssiUpdated(TimeSpan.FromSeconds(1)).Subscribe(newRssi => _rssi.OnNext(newRssi));
+                    _rssiNative = _device.WhenRssiUpdated(TimeSpan.FromSeconds(1)).Subscribe(newRssi => _rssi.OnNext(newRssi));
                 }
                 else
                 {
@@ -86,7 +75,7 @@ namespace Danfoss.CaseControllerApp.Core.Services
         {
             _scanNative?.Dispose();
 
-            _scanNative = Device.WhenServiceDiscovered().Subscribe(gattService =>
+            _scanNative = _device.WhenServiceDiscovered().Subscribe(gattService =>
             {
                 var existed = Items.FirstOrDefault(x => x.Uuid == gattService.Uuid);
                 if (existed == null)
@@ -112,20 +101,20 @@ namespace Danfoss.CaseControllerApp.Core.Services
             _items.Clear();
             _servicesCleared.OnNext(null);
 
-            Device.Disconnect();
+            _device.Disconnect();
         }
 
         public void ConnectAndStartScan()
         {
             //_ble.Stop();
 
-            Device.Connect().Subscribe((connection) =>
+            _device.Connect().Subscribe((connection) =>
             {
                 StartScan();
             });
         }
 
-        public CaseControllerService GetService(Guid uuid)
+        public ICaseControllerService GetService(Guid uuid)
         {
             return Items.FirstOrDefault(x => x.Uuid == uuid);
         }

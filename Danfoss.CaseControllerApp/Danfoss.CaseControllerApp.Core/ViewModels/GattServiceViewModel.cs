@@ -1,8 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using Acr.Ble;
-using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
@@ -11,7 +10,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
     public class GattServiceViewModel : MvxViewModel
     {
         private readonly IBluetoothService _ble;
-        private CaseControllerService _service;
+        private ICaseControllerService _service;
 
         public GattServiceViewModel(IBluetoothService ble)
         {
@@ -31,11 +30,13 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             ShowViewModel<CharacteristicViewModel>(new CharacteristicList() { Device = _deviceUuid, Service = Uuid, Characteristic = characteristic.Uuid });
         });
 
-        public string ConnectionAction => _service.IsScanning ? "Stop" : "Start";
+        public bool IsScanning { get; private set; }
+
+        public string ConnectionAction => IsScanning ? "Stop" : "Start";
 
         public IMvxCommand ToggleConnection => new MvxCommand(() =>
         {
-            if (_service.IsScanning)
+            if (IsScanning)
             {
                 _service.StopScan();
                 RaisePropertyChanged(nameof(ConnectionAction));
@@ -63,17 +64,12 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
                 Description = _service.Description;
 
-                foreach (var characteristic in _service.Characteristics)
-                {
-                    Characteristics.Add(Create(characteristic.Uuid));
-                }
+                _service.IsScanning.Subscribe(isScanning => IsScanning = isScanning);
 
-                _service.CharacteristicAdded.Subscribe(c => Characteristics.Add(Create(c.Uuid)));
+                _service.SyncTo(Characteristics, characteristic => new CharacteristicViewModel(_ble).Set(_deviceUuid, Uuid, characteristic.Uuid));
             }
 
             return this;
         }
-
-        private CharacteristicViewModel Create(Guid uuid) => new CharacteristicViewModel(_ble).Set(_deviceUuid, Uuid, uuid);
     }
 }

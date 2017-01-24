@@ -5,6 +5,8 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Acr.Ble;
 using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using Daven.SyntaxExtensions;
 using MvvmCross.Core.ViewModels;

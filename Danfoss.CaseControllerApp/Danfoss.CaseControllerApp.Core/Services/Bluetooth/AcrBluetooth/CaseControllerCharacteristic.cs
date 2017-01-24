@@ -1,24 +1,30 @@
 using System;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using Acr.Ble;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Daven.SyntaxExtensions;
 
-namespace Danfoss.CaseControllerApp.Core.Services
+namespace Danfoss.CaseControllerApp.Core.Services.Bluetooth.AcrBluetooth
 {
-    public class CaseControllerCharacteristic
+    public class CaseControllerCharacteristic : ICaseControllerCharacteristic
     {
         private readonly IGattCharacteristic _characteristic;
         private readonly CaseControllerService _service;
 
         public Guid Uuid => _characteristic.Uuid;
         public string Description => _characteristic.Description;
-        public string Value => FromBytes(_characteristic.Value);
+        public IObservable<string> Value => _value.AsObservable();
+
+        private readonly BehaviorSubject<string> _value; 
 
         public CaseControllerCharacteristic(IGattCharacteristic characteristic, CaseControllerService service)
         {
             _characteristic = characteristic;
             _service = service;
+
+            _value = new BehaviorSubject<string>(FromBytes(characteristic.Value));
         }
 
         public IObservable<string> Download()
@@ -43,9 +49,9 @@ namespace Danfoss.CaseControllerApp.Core.Services
             _characteristic.WriteWithoutResponse(ToBytes(newValue));
         }
 
-        public IObservable<string> ValueChanged()
+        public void ListenToNotifications()
         {
-            return _characteristic.SubscribeToNotifications().Select(result => FromBytes(result.Data));
+            _characteristic.SubscribeToNotifications().Select(result => FromBytes(result.Data)).Subscribe(result => _value.OnNext(result));
         }
     }
 }

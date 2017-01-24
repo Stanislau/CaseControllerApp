@@ -1,6 +1,5 @@
 using System;
-using Acr.Ble;
-using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
@@ -9,7 +8,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
     public class CharacteristicViewModel : MvxViewModel
     {
         private readonly IBluetoothService _ble;
-        private CaseControllerCharacteristic _characteristic;
+        private ICaseControllerCharacteristic _characteristic;
 
         public Guid Uuid { get; private set; }
         public string Description { get; set; }
@@ -35,7 +34,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
                 Description = _characteristic.Description;
 
-                Value = _characteristic.Value;
+                _characteristic.Value.Subscribe(value => Value = value);
             }
 
             return this;
@@ -45,9 +44,6 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         public IMvxCommand Add42 => new MvxCommand(() => _characteristic.Upload(Value + "42"));
 
-        public IMvxCommand Subscribe => new MvxCommand(() => _characteristic.ValueChanged().Subscribe((value) =>
-        {
-            Value = value;
-        }));
+        public IMvxCommand Subscribe => new MvxCommand(() => _characteristic.ListenToNotifications());
     }
 }

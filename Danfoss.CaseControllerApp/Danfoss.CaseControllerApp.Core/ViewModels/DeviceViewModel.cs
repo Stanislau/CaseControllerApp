@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using Acr.Ble;
 using Acr.UserDialogs;
-using Danfoss.CaseControllerApp.Core.Services;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
+using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
@@ -25,7 +25,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
 
         public string MacAddress => Uuid.ToString();
 
-        private CaseController _device;
+        private ICaseController _device;
 
         public string ConnectionAction => State == ConnectionStatus.Connected ? "Disconnect" : "Connect";
 
