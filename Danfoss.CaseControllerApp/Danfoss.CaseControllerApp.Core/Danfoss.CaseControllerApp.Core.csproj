@@ -60,6 +60,7 @@
     <Compile Include="Services\Bluetooth\Abstract\IBluetoothService.cs" />
     <Compile Include="Services\Bluetooth\Abstract\ISyncable.cs" />
     <Compile Include="Services\Bluetooth\Common\SyncFacade.cs" />
+    <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\Parameters\CharacteristicList.cs" />
     <Compile Include="ViewModels\CharacteristicViewModel.cs" />
     <Compile Include="ViewModels\DeviceListViewModel.cs" />

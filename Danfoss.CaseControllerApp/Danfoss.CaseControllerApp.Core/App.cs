@@ -34,7 +34,7 @@ namespace Danfoss.CaseControllerApp.Core
 
             Mvx.RegisterSingleton<IBluetoothService>(() => new BluetoothService());
 
-            Mvx.RegisterSingleton<IMvxAppStart>(new BleTestAppStart());
+            Mvx.RegisterSingleton<IMvxAppStart>(new DanfossAppStart());
         }
     }
 
@@ -42,7 +42,7 @@ namespace Danfoss.CaseControllerApp.Core
     {
         public void Start(object hint = null)
         {
-            
+            ShowViewModel<CreateAccountViewModel>();
         }
     }
 

@@ -2,4 +2,7 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">Danfoss.CaseControllerApp.Droid</string>
+    
+    <color name="SplashScreenBackground">#B6000E</color>
+    <color name="UsualBackground">#E1000E</color>
 </resources>
