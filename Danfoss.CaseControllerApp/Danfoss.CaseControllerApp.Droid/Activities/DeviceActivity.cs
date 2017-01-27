@@ -15,4 +15,15 @@ namespace Danfoss.CaseControllerApp.Droid.Activities
             SetContentView(Resource.Layout.Device);
         }
     }
+
+    //[Activity(Label = "Device View")]
+    //public class CreateUserActivity : MvxActivity<DeviceViewModel>
+    //{
+    //    protected override void OnCreate(Bundle bundle)
+    //    {
+    //        base.OnCreate(bundle);
+
+    //        SetContentView(Resource.Layout.Device);
+    //    }
+    //}
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using Acr.Ble;
+using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Daven.SyntaxExtensions;
 

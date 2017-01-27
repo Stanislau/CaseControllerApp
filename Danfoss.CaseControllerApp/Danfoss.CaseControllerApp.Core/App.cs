@@ -34,11 +34,19 @@ namespace Danfoss.CaseControllerApp.Core
 
             Mvx.RegisterSingleton<IBluetoothService>(() => new BluetoothService());
 
-            Mvx.RegisterSingleton<IMvxAppStart>(new CustomAppStart());
+            Mvx.RegisterSingleton<IMvxAppStart>(new BleTestAppStart());
         }
     }
 
-    public class CustomAppStart : MvxNavigatingObject, IMvxAppStart
+    public class DanfossAppStart : MvxNavigatingObject, IMvxAppStart
+    {
+        public void Start(object hint = null)
+        {
+            
+        }
+    }
+
+    public class BleTestAppStart : MvxNavigatingObject, IMvxAppStart
     {
         public void Start(object hint = null)
         {
