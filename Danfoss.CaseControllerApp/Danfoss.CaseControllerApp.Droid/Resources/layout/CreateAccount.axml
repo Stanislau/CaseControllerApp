@@ -35,38 +35,37 @@
         android:layout_height="wrap_content"
         local:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
         local:theme="@style/ThemeOverlay.AppCompat.Light"
+        
+        android:contentInsetLeft="0dp"
+        android:contentInsetStart="0dp"
+        local:contentInsetLeft="0dp"
+        local:contentInsetStart="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEnd="0dp"
+        local:contentInsetRight="0dp"
+        local:contentInsetEnd="0dp"
     >
-
-        <LinearLayout
-        android:layout_width="wrap_content"
+        <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right">
+        android:orientation="horizontal">
             <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            local:MvxBind="Text Title"
-                            android:textSize="20dp"
-                            android:textColor="#000000"
-                            android:textStyle="bold"/>
-            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                local:MvxBind="Text Title"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+            <danfoss.DrawerArrowView
                 android:id="@+id/toggleButton1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:gravity="right"
-
-                android:background="@drawable/Icon"
-                android:text=""
-                android:textOff=""
-                android:textOn=""
-                android:focusable="false">
-            </ToggleButton>
-
-        </LinearLayout>
+                />
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.DrawerLayout
@@ -82,7 +81,7 @@
         <ListView android:id="@+id/left_drawer"
              android:layout_width="240dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="start"
+                android:layout_gravity="end"
              android:choiceMode="singleChoice"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"

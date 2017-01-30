@@ -193,6 +193,8 @@
     <Compile Include="Activities\CreateAccountActivity.cs" />
     <Compile Include="Activities\DeviceActivity.cs" />
     <Compile Include="Activities\DeviceListActivity.cs" />
+    <Compile Include="Activities\DrawerArrowDrawable.cs" />
+    <Compile Include="Activities\DrawerArrowView.cs" />
     <Compile Include="Activities\GattCharacteristicActivity.cs" />
     <Compile Include="Activities\GattServiceActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -267,6 +269,7 @@
     <AndroidResource Include="Resources\values\SplashStyle.xml" />
     <AndroidResource Include="Resources\values\AppStyle.xml" />
     <AndroidResource Include="Resources\drawable\BluetoothStrength.png" />
+    <AndroidResource Include="Resources\values\Dimens.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

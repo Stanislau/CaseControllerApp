@@ -4,6 +4,12 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
-        
     </style>
+
+    <color name="pressed_color">#4d90fe</color>
+    <color name="default_color">#111</color>
+    <color name="left_menu_background">#222</color>
+    <color name="default_gray">#EEEEEE</color>
+    <color name="navbar_background">#212121</color>
+    <color name="ldrawer_color">#212121</color>
 </resources>
