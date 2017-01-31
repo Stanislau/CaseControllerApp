@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Acr.Ble;
 using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;

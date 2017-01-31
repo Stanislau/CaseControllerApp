@@ -116,6 +116,14 @@
       <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PropertyChanged, Version=1.52.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.1.52.1\lib\netstandard10\PropertyChanged.dll</HintPath>
       <Private>False</Private>
@@ -190,13 +198,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\BackButtonView.cs" />
     <Compile Include="Activities\CreateAccountActivity.cs" />
     <Compile Include="Activities\DeviceActivity.cs" />
     <Compile Include="Activities\DeviceListActivity.cs" />
     <Compile Include="Activities\DrawerArrowDrawable.cs" />
     <Compile Include="Activities\DrawerArrowView.cs" />
+    <Compile Include="Activities\FragmentBase.cs" />
     <Compile Include="Activities\GattCharacteristicActivity.cs" />
     <Compile Include="Activities\GattServiceActivity.cs" />
+    <Compile Include="Activities\FirstFragment.cs" />
+    <Compile Include="Activities\SecondFragment.cs" />
+    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
@@ -237,6 +250,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Toolbar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\FirstFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\SecondFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

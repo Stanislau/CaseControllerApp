@@ -16,7 +16,7 @@ namespace Danfoss.CaseControllerApp.Droid.Activities
 
         public DrawerArrowView(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
-
+            Initialize();
         }
 
         public DrawerArrowView(Context context) : base(context)
@@ -48,7 +48,7 @@ namespace Danfoss.CaseControllerApp.Droid.Activities
 
         public void Sync(DrawerLayout drawer)
         {
-            Touch += (sender, args) =>
+            Click += (sender, args) =>
             {
                 if (drawer.IsDrawerOpen((int)GravityFlags.End))
                 {

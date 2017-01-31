@@ -2,6 +2,7 @@
 using Danfoss.CaseControllerApp.Core.Services;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.AcrBluetooth;
+using Danfoss.CaseControllerApp.Core.Services.Helpers;
 using Danfoss.CaseControllerApp.Core.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -34,6 +35,8 @@ namespace Danfoss.CaseControllerApp.Core
 
             Mvx.RegisterSingleton<IBluetoothService>(() => new BluetoothService());
 
+            Mvx.RegisterSingleton<IRootViewModelNotifier>(() => new RootViewModelNotifier());
+
             Mvx.RegisterSingleton<IMvxAppStart>(new DanfossAppStart());
         }
     }
@@ -42,7 +45,7 @@ namespace Danfoss.CaseControllerApp.Core
     {
         public void Start(object hint = null)
         {
-            ShowViewModel<CreateAccountViewModel>();
+            ShowViewModel<RootViewModel>();
         }
     }
 

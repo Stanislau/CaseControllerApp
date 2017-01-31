@@ -2,12 +2,93 @@ using System;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Runtime;
 using Android.Views;
 using Daven.SyntaxExtensions;
 using Math = Java.Lang.Math;
 
 namespace Danfoss.CaseControllerApp.Droid.Activities
 {
+    public class BackArrowDrawable : Drawable
+    {
+        private static float ARROW_HEAD_ANGLE = (float)Math.ToRadians(45.0d);
+        protected float mBarGap;
+        protected float mBarSize;
+        protected float mBarThickness;
+        protected float mMiddleArrowSize;
+        protected Paint mPaint = new Paint();
+        protected Path mPath = new Path();
+        protected float mProgress;
+        protected int mSize;
+        protected float mVerticalMirror = 1f;
+        protected float mTopBottomArrowSize;
+        private bool _isMirrored;
+
+        public BackArrowDrawable(Context context, bool isMirrored = false)
+        {
+            _isMirrored = isMirrored;
+            this.mPaint.Color = context.Resources.GetColor(Resource.Color.ldrawer_color);
+            this.mSize = context.Resources.GetDimensionPixelSize(Resource.Dimension.ldrawer_drawableSize);
+            this.mBarSize = context.Resources.GetDimensionPixelSize(Resource.Dimension.ldrawer_barSize);
+            this.mTopBottomArrowSize = context.Resources.GetDimensionPixelSize(Resource.Dimension.ldrawer_topBottomBarArrowSize);
+            this.mBarThickness = context.Resources.GetDimensionPixelSize(Resource.Dimension.ldrawer_thickness);
+            this.mBarGap = context.Resources.GetDimensionPixelSize(Resource.Dimension.ldrawer_gapBetweenBars);
+            this.mMiddleArrowSize = context.Resources.GetDimensionPixelSize(Resource.Dimension.ldrawer_middleBarArrowSize);
+            this.mPaint.SetStyle(Paint.Style.Stroke);
+            this.mPaint.StrokeJoin = Paint.Join.Round;
+            this.mPaint.StrokeCap = Paint.Cap.Square;
+            this.mPaint.StrokeWidth = this.mBarThickness;
+        }
+
+        protected float GetValue(float start, float end, float progress)
+        {
+            return start + progress * (end - start);
+        }
+
+        public override void Draw(Canvas canvas)
+        {
+            var localRect = Bounds;
+            var arrowSize = mTopBottomArrowSize;
+            var middleSize = mMiddleArrowSize;
+            var centerHorizontally = mBarThickness/2.0F;
+            var angle = ARROW_HEAD_ANGLE;
+            var pi = 180.0F;
+            var centerVertically = -middleSize / 2.0F;
+            var dxSize = (float)Math.Round(arrowSize * Math.Cos(angle));
+            var dySize = (float)Math.Round(arrowSize * Math.Sin(angle));
+
+            mPath.Rewind();
+            //mPath.MoveTo(centerVertically + centerHorizontally, 0.0F);
+            //mPath.RLineTo(middleSize - centerHorizontally, 0.0F);
+            mPath.MoveTo(centerVertically, 0.0F);
+            mPath.RLineTo(dxSize, dySize);
+            mPath.MoveTo(centerVertically, 0.0F);
+            mPath.RLineTo(dxSize, -dySize);
+            mPath.MoveTo(0.0F, 0.0F);
+            mPath.Close();
+            canvas.Save();
+            
+            if (_isMirrored == false)
+                canvas.Rotate(180.0F, localRect.CenterX(), localRect.CenterY());
+            canvas.Rotate(pi * mVerticalMirror, localRect.CenterX(), localRect.CenterY());
+            canvas.Translate(localRect.CenterX(), localRect.CenterY());
+            canvas.DrawPath(this.mPath, this.mPaint);
+            canvas.Restore();
+        }
+
+        public override void SetAlpha(int alpha)
+        {
+            this.mPaint.Alpha = Alpha;
+        }
+
+        public override void SetColorFilter(ColorFilter cf)
+        {
+            this.mPaint.SetColorFilter(cf);
+        }
+
+        public override int Opacity => (int)Format.Translucent;
+    }
+
     public class DrawerArrowDrawable : Drawable
     {
         private static float ARROW_HEAD_ANGLE = (float)Math.ToRadians(45.0d);
