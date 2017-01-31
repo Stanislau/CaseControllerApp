@@ -78,10 +78,12 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v4.widget.DrawerLayout
+    <danfoss.DrawerLayout
    	 android:id="@+id/drawer_layout"
    	 android:layout_width="match_parent"
-   	 android:layout_height="match_parent">
+   	 android:layout_height="match_parent"
+     local:MvxBind="DrawerLockMode SideNavigationLock(SideNavigationEnabled)"
+     >
         <!-- The main content view -->
         <FrameLayout
             android:id="@+id/frameLayout"
@@ -96,7 +98,7 @@
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"
                 android:background="#fff"/>
-    </android.support.v4.widget.DrawerLayout>
+    </danfoss.DrawerLayout>
 </LinearLayout>
 
 

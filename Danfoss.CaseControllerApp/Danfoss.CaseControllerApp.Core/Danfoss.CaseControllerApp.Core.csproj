@@ -62,6 +62,8 @@
     <Compile Include="Services\Bluetooth\Common\SyncFacade.cs" />
     <Compile Include="Services\Helpers\RootViewModelNotifier.cs" />
     <Compile Include="ViewModels\ChildViewModel.cs" />
+    <Compile Include="ViewModels\FirstViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
     <Compile Include="Services\Helpers\IRootViewModelNotifier.cs" />
     <Compile Include="ViewModels\Parameters\CharacteristicList.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="ViewModels\GattServiceViewModel.cs" />
     <Compile Include="ViewModels\Parameters\DeviceLink.cs" />
     <Compile Include="ViewModels\Parameters\ServiceLink.cs" />
+    <Compile Include="ViewModels\SecondViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Ble, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

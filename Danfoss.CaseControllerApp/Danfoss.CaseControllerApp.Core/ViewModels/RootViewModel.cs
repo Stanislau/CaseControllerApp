@@ -46,47 +46,4 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels
             ShowViewModel(menuItem.ViewModelType);
         }
     }
-
-    public class FirstViewModel : ChildViewModel
-    {
-        public string Text1 { get; set; } = "First";
-
-        public string Blah { get; set; }
-
-        public override void Start()
-        {
-            base.Start();
-
-            Blah = "Brand new value!";
-        }
-
-        public override string Title { get; } = "First";
-    }
-
-    public class SecondViewModel : ChildViewModel
-    {
-        public string Text2 { get; set; } = "Second";
-
-        public override string Title { get; } = "Second";
-
-        public override Type BackViewModel { get; } = typeof (FirstViewModel);
-    }
-
-    public class MenuItemViewModel
-    {
-        public string Title { get; }
-
-        public Type ViewModelType { get; }
-
-        public MenuItemViewModel(string title, Type viewModelType)
-        {
-            Title = title;
-            ViewModelType = viewModelType;
-        }
-
-        public override string ToString()
-        {
-            return Title;
-        }
-    }
 }

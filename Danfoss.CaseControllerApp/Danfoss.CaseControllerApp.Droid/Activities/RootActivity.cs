@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
@@ -18,7 +19,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace Danfoss.CaseControllerApp.Droid.Activities
 {
     [Activity(Label = "Create user", Theme = "@style/AppTheme")]
-    public class CreateAccountActivity : MvxCachingFragmentCompatActivity<RootViewModel>
+    public class RootActivity : MvxCachingFragmentCompatActivity<RootViewModel>
     {
         private DrawerLayout _drawer;
         private Toolbar _toolbar;
@@ -28,14 +29,13 @@ namespace Danfoss.CaseControllerApp.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.CreateAccount);
+            SetContentView(Resource.Layout.Root);
 
             _toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(_toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
 
             _drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            //_drawer.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed); //todo[sk]: move to value convertor to bindings
 
             FindViewById<DrawerArrowView>(Resource.Id.toggleButton1).Sync(_drawer);
 

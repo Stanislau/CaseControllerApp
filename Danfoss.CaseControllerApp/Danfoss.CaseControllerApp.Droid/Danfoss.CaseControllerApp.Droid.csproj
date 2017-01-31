@@ -199,7 +199,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\BackButtonView.cs" />
-    <Compile Include="Activities\CreateAccountActivity.cs" />
+    <Compile Include="Activities\DrawerLayoutEx.cs" />
+    <Compile Include="Activities\RootActivity.cs" />
     <Compile Include="Activities\DeviceActivity.cs" />
     <Compile Include="Activities\DeviceListActivity.cs" />
     <Compile Include="Activities\DrawerArrowDrawable.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="ValueConverters\SideNavigationLockValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -246,7 +248,7 @@
     <AndroidResource Include="Resources\layout\Characteristic.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CreateAccount.axml">
+    <AndroidResource Include="Resources\layout\Root.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Toolbar.axml">
