@@ -61,19 +61,19 @@
     <Compile Include="Services\Bluetooth\Abstract\ISyncable.cs" />
     <Compile Include="Services\Bluetooth\Common\SyncFacade.cs" />
     <Compile Include="Services\Helpers\RootViewModelNotifier.cs" />
-    <Compile Include="ViewModels\ChildViewModel.cs" />
-    <Compile Include="ViewModels\FirstViewModel.cs" />
-    <Compile Include="ViewModels\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\RootViewModel.cs" />
+    <Compile Include="ViewModels\Root\ChildViewModel.cs" />
+    <Compile Include="ViewModels\Content\FirstViewModel.cs" />
+    <Compile Include="ViewModels\Root\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\Root\RootViewModel.cs" />
     <Compile Include="Services\Helpers\IRootViewModelNotifier.cs" />
     <Compile Include="ViewModels\Parameters\CharacteristicList.cs" />
-    <Compile Include="ViewModels\CharacteristicViewModel.cs" />
-    <Compile Include="ViewModels\DeviceListViewModel.cs" />
-    <Compile Include="ViewModels\DeviceViewModel.cs" />
-    <Compile Include="ViewModels\GattServiceViewModel.cs" />
+    <Compile Include="ViewModels\Content\CharacteristicViewModel.cs" />
+    <Compile Include="ViewModels\Content\DeviceListViewModel.cs" />
+    <Compile Include="ViewModels\Content\DeviceViewModel.cs" />
+    <Compile Include="ViewModels\Content\GattServiceViewModel.cs" />
     <Compile Include="ViewModels\Parameters\DeviceLink.cs" />
     <Compile Include="ViewModels\Parameters\ServiceLink.cs" />
-    <Compile Include="ViewModels\SecondViewModel.cs" />
+    <Compile Include="ViewModels\Content\SecondViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Ble, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

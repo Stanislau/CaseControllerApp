@@ -1,10 +1,23 @@
 ﻿using System;
-using System.Linq;
 using Danfoss.CaseControllerApp.Core.Services.Helpers;
+using Danfoss.CaseControllerApp.Core.ViewModels.Content;
 using MvvmCross.Core.ViewModels;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Root
 {
+    public class ContentViewModel : MvxViewModel
+    {
+        public void ShowMenu()
+        {
+            ShowViewModel<IosMenuViewModel>();
+        }
+    }
+
+    public class IosMenuViewModel : MvxViewModel
+    {
+        
+    }
+
     public class RootViewModel : MvxViewModel
     {
         public string Title { get; private set; } = "Get your user profile ready!";

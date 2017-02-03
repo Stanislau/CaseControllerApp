@@ -3,7 +3,7 @@ using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
     public class CharacteristicViewModel : MvxViewModel
     {

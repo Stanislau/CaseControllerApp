@@ -1,6 +1,7 @@
 ﻿using Cirrious.FluentLayouts.Touch;
 using Danfoss.CaseControllerApp.Apple.Extensions;
 using Danfoss.CaseControllerApp.Core.ViewModels;
+using Danfoss.CaseControllerApp.Core.ViewModels.Content;
 using UIKit;
 
 namespace Danfoss.CaseControllerApp.Apple.Controllers

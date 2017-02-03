@@ -1,6 +1,7 @@
 ﻿using System;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
     public class SecondViewModel : ChildViewModel
     {

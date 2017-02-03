@@ -3,7 +3,6 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
-using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using UIKit;
 
@@ -22,9 +21,7 @@ namespace Danfoss.CaseControllerApp.Apple
         {
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            var presenter = new MvxIosViewPresenter(this, Window);
-
-            var setup = new Setup(this, presenter);
+            var setup = new Setup(this, Window);
             setup.Initialize();
 
             var startup = Mvx.Resolve<IMvxAppStart>();

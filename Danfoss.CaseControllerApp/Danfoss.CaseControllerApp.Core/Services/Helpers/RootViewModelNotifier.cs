@@ -2,6 +2,7 @@ using System;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using Danfoss.CaseControllerApp.Core.ViewModels;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 
 namespace Danfoss.CaseControllerApp.Core.Services.Helpers
 {

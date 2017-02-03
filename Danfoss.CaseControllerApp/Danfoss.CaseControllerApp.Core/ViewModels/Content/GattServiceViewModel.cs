@@ -5,7 +5,7 @@ using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
     public class GattServiceViewModel : MvxViewModel
     {

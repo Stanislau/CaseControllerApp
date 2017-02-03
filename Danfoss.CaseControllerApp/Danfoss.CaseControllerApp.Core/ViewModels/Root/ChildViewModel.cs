@@ -1,7 +1,7 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Root
 {
     public abstract class ChildViewModel : MvxViewModel
     {

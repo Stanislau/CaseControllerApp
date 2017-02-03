@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using Acr.Ble;
 using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
@@ -8,7 +7,7 @@ using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
 using MvvmCross.Core.ViewModels;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
     public class DeviceViewModel : MvxViewModel
     {

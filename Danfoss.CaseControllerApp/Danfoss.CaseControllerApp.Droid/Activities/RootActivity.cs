@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
-using Android.Views;
 using Android.Widget;
 using Danfoss.CaseControllerApp.Core.Services.Helpers;
 using Danfoss.CaseControllerApp.Core.ViewModels;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 using Daven.SyntaxExtensions;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
-using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Danfoss.CaseControllerApp.Droid.Activities

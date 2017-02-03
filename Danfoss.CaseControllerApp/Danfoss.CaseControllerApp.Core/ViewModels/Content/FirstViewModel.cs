@@ -1,4 +1,6 @@
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
+
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
     public class FirstViewModel : ChildViewModel
     {

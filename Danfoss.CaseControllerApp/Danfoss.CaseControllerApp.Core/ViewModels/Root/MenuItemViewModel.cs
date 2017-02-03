@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Root
 {
     public class MenuItemViewModel
     {

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Acr.Ble;
-using Danfoss.CaseControllerApp.Core.Services;
+﻿using System.Collections.ObjectModel;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Common;
 using Danfoss.CaseControllerApp.Core.ViewModels.Parameters;
-using Daven.SyntaxExtensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
-namespace Danfoss.CaseControllerApp.Core.ViewModels
+namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
     public class DeviceListViewModel : MvxViewModel
     {

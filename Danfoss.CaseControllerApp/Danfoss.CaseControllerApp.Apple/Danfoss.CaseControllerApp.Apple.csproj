@@ -87,8 +87,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Controllers\FirstViewController.cs" />
     <Compile Include="Controllers\BaseViewController.cs" />
     <Compile Include="Controllers\HelloWorldViewController.cs" />
+    <Compile Include="Controllers\ContentViewController.cs" />
+    <Compile Include="Infrastructure\IgnoreViewAttribute.cs" />
+    <Compile Include="Infrastructure\DanfossPresenter.cs" />
     <Compile Include="Exceptions\DynamicLayoutException.cs" />
     <Compile Include="Exceptions\UserInterfaceException.cs" />
     <Compile Include="Extensions\DynamicLayout.cs" />
@@ -97,6 +101,8 @@
     <Compile Include="Extensions\MvvmCrossExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Controllers\MenuViewController.cs" />
+    <Compile Include="Infrastructure\MvxViewModelViewLookupBuilderIgnoreSupport.cs" />
     <Compile Include="Setup.cs" />
     <Content Include="FodyWeavers.xml" />
     <None Include="Info.plist" />
@@ -146,6 +152,14 @@
       <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.iOS.Support, Version=1.0.6150.911, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.4.4.0\lib\Xamarin.iOS10\MvvmCross.iOS.Support.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support.XamarinSidebar, Version=1.0.6150.912, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.XamarinSidebar.4.4.0\lib\Xamarin.iOS10\MvvmCross.iOS.Support.XamarinSidebar.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
@@ -193,6 +207,10 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Xamarin-Sidebar-Unified, Version=1.0.6137.17856, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.XamarinSidebar.4.4.0\lib\Xamarin.iOS10\Xamarin-Sidebar-Unified.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +227,7 @@
       <Name>Daven.SyntaxExtensions</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

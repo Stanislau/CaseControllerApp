@@ -1,5 +1,6 @@
 using Danfoss.CaseControllerApp.Core.Services.Helpers;
 using Danfoss.CaseControllerApp.Core.ViewModels;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platform;
 

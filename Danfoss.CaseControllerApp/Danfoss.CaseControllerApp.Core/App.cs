@@ -4,6 +4,8 @@ using Danfoss.CaseControllerApp.Core.Services.Bluetooth.Abstract;
 using Danfoss.CaseControllerApp.Core.Services.Bluetooth.AcrBluetooth;
 using Danfoss.CaseControllerApp.Core.Services.Helpers;
 using Danfoss.CaseControllerApp.Core.ViewModels;
+using Danfoss.CaseControllerApp.Core.ViewModels.Content;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;

@@ -2,6 +2,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Danfoss.CaseControllerApp.Core.ViewModels;
+using Danfoss.CaseControllerApp.Core.ViewModels.Content;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
