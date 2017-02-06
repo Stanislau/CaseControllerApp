@@ -1,4 +1,6 @@
+using Acr.UserDialogs;
 using Danfoss.CaseControllerApp.Core.ViewModels.Root;
+using MvvmCross.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
 {
@@ -16,5 +18,12 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
         }
 
         public override string Title { get; } = "First";
+
+        public IMvxCommand ShowText => new MvxCommand(() => UserDialogs.Instance.Alert(Blah));
+
+        public void Next()
+        {
+            ShowViewModel<SecondViewModel>();
+        }
     }
 }

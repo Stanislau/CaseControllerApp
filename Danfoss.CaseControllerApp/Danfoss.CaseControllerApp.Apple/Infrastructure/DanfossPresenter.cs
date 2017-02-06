@@ -1,4 +1,7 @@
 using System.Linq;
+using Danfoss.CaseControllerApp.Apple.Controllers;
+using Danfoss.CaseControllerApp.Core.ViewModels.Root;
+using Daven.SyntaxExtensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Support.XamarinSidebar;
@@ -7,14 +10,16 @@ using MvvmCross.iOS.Views;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Exceptions;
+using SidebarNavigation;
 using UIKit;
 
 namespace Danfoss.CaseControllerApp.Apple.Infrastructure
 {
     public class DanfossPresenter : MvxIosViewPresenter
     {
+        private HeaderViewController _content;
         protected virtual UINavigationController ParentRootViewController { get; set; }
-        protected virtual MvxSidebarPanelController RootViewController { get; set; }
+        public static MvxSidebarPanelController RootViewController { get; set; }
 
         public DanfossPresenter(IUIApplicationDelegate applicationDelegate, UIWindow window)
             : base(applicationDelegate, window)
@@ -71,12 +76,18 @@ namespace Danfoss.CaseControllerApp.Apple.Infrastructure
                 }
                 case MvxPanelEnum.Right:
                 {
+                    var root = viewController.CastInstanceTo<MvxViewController>();
+                    var vm = Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(root.Request, null).CastInstanceTo<RootViewModel>();
+                    root.ViewModel = vm;
+                    _content = new HeaderViewController();
+                    _content.ViewModel = vm;
+                    RootViewController.NavigationController.PushViewController(_content, false);
                     RootViewController.RightSidebarController.ChangeMenuView(viewController);
                     return;
                 }
                 case MvxPanelEnum.Center:
                 {
-                    RootViewController.NavigationController.PushViewController(viewController, true);
+                    _content.Content.PushViewController(viewController, true);
                     return;
                 }
             }
@@ -111,6 +122,10 @@ namespace Danfoss.CaseControllerApp.Apple.Infrastructure
 
             RootViewController = new MvxSidebarPanelController(MasterNavigationController);
             RootViewController.Initialize();
+            RootViewController.RightSidebarController.MenuLocation = MenuLocations.Right;
+            RootViewController.LeftSidebarController.MenuLocation = MenuLocations.Left;
+            RootViewController.LeftSidebarController.Disabled = true;
+            RootViewController.RightSidebarController.HasShadowing = false;
 
             ParentRootViewController = new UINavigationController(RootViewController);
             ParentRootViewController.NavigationBarHidden = true;

@@ -45,6 +45,11 @@ namespace Danfoss.CaseControllerApp.Droid.Activities
             }
         }
 
+        public override void OnBackPressed()
+        {
+            ViewModel.BackCommand.Execute();
+        }
+
         public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
         {
             base.OnFragmentChanged(fragmentInfo);

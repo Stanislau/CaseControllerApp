@@ -87,10 +87,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Controllers\ContentViewController.cs" />
     <Compile Include="Controllers\FirstViewController.cs" />
     <Compile Include="Controllers\BaseViewController.cs" />
     <Compile Include="Controllers\HelloWorldViewController.cs" />
-    <Compile Include="Controllers\ContentViewController.cs" />
+    <Compile Include="Controllers\HeaderViewController.cs" />
+    <Compile Include="Controllers\SecondViewController.cs" />
     <Compile Include="Infrastructure\IgnoreViewAttribute.cs" />
     <Compile Include="Infrastructure\DanfossPresenter.cs" />
     <Compile Include="Exceptions\DynamicLayoutException.cs" />
@@ -99,12 +101,16 @@
     <Compile Include="Extensions\DynamicSection.cs" />
     <Compile Include="Extensions\FluentLayoutSyntaxExtension.cs" />
     <Compile Include="Extensions\MvvmCrossExtensions.cs" />
+    <Compile Include="InterfaceBuilder\UserInterface.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Controllers\MenuViewController.cs" />
     <Compile Include="Infrastructure\MvxViewModelViewLookupBuilderIgnoreSupport.cs" />
     <Compile Include="Setup.cs" />
     <Content Include="FodyWeavers.xml" />
+    <BundleResource Include="Resources\icon-menu%403x.png" />
+    <BundleResource Include="Resources\icon-menu.png" />
+    <BundleResource Include="Resources\icon-menu%402x.png" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
