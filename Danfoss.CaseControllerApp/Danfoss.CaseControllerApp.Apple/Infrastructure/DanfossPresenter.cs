@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Danfoss.CaseControllerApp.Apple.Controllers;
 using Danfoss.CaseControllerApp.Core.ViewModels.Root;
 using Daven.SyntaxExtensions;
@@ -87,15 +88,27 @@ namespace Danfoss.CaseControllerApp.Apple.Infrastructure
                 }
                 case MvxPanelEnum.Center:
                 {
-                    _content.Content.PushViewController(viewController, true);
+                    NavigateTo(controller: viewController);
+                    
                     return;
                 }
             }
         }
 
+        private async void NavigateTo(UIViewController controller)
+        {
+            if (RootViewController.RightSidebarController.IsOpen)
+            {
+                RootViewController.Close();
+                await Task.Delay(250);
+            }
+            
+            _content.Content.PushViewController(controller, true);
+        }
+
         public override void Close(IMvxViewModel toClose)
         {
-            if (ParentRootViewController.ViewControllers.Count() > 1)
+            if (ParentRootViewController.ViewControllers.Length > 1)
                 ParentRootViewController.PopViewController(true);
             else if (RootViewController.NavigationController.ViewControllers.Count() > 1)
                 RootViewController.NavigationController.PopViewController(true);

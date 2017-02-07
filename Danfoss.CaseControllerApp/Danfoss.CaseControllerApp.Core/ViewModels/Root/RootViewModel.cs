@@ -46,11 +46,13 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels.Root
             });
         }
 
-        public MenuItemViewModel[] MenuItems { get; } = new[]
+        public MvxObservableCollection<MenuItemViewModel> MenuItems { get; } = new MvxObservableCollection<MenuItemViewModel>(new []
         {
             new MenuItemViewModel("First", typeof(FirstViewModel)),
             new MenuItemViewModel("Second", typeof(SecondViewModel)),
-        };
+        });
+
+        public IMvxCommand Navigate => new MvxCommand<MenuItemViewModel>(menuItem => ShowViewModel(menuItem.ViewModelType));
 
         public void NavigateTo(int position)
         {
