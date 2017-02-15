@@ -94,6 +94,12 @@
     <Compile Include="Controllers\HeaderViewController.cs" />
     <Compile Include="Controllers\CachedNavigationController.cs" />
     <Compile Include="Controllers\SecondViewController.cs" />
+    <Compile Include="Controllers\WizardApplicationTypeViewController.cs" />
+    <Compile Include="Controllers\WizardCaseTypeViewController.cs" />
+    <Compile Include="Controllers\WizardFoodTypeViewController.cs" />
+    <Compile Include="Controllers\WizardStepViewController.cs" />
+    <Compile Include="Controllers\WizardViewController.cs" />
+    <Compile Include="Controls\DanfossPagerView.cs" />
     <Compile Include="Infrastructure\IgnoreViewAttribute.cs" />
     <Compile Include="Infrastructure\DanfossPresenter.cs" />
     <Compile Include="Exceptions\DynamicLayoutException.cs" />

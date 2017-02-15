@@ -61,6 +61,7 @@
     <Compile Include="Services\Bluetooth\Abstract\ISyncable.cs" />
     <Compile Include="Services\Bluetooth\Common\SyncFacade.cs" />
     <Compile Include="Services\Helpers\RootViewModelNotifier.cs" />
+    <Compile Include="ViewModels\Content\WizardViewModel.cs" />
     <Compile Include="ViewModels\Root\ChildViewModel.cs" />
     <Compile Include="ViewModels\Content\FirstViewModel.cs" />
     <Compile Include="ViewModels\Root\MenuItemViewModel.cs" />

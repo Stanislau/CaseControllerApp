@@ -5,19 +5,6 @@ using MvvmCross.Core.ViewModels;
 
 namespace Danfoss.CaseControllerApp.Core.ViewModels.Root
 {
-    public class ContentViewModel : MvxViewModel
-    {
-        public void ShowMenu()
-        {
-            ShowViewModel<IosMenuViewModel>();
-        }
-    }
-
-    public class IosMenuViewModel : MvxViewModel
-    {
-        
-    }
-
     public class RootViewModel : MvxViewModel
     {
         public string Title { get; private set; } = "Get your user profile ready!";
@@ -50,6 +37,7 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels.Root
         {
             new MenuItemViewModel("First", typeof(FirstViewModel)),
             new MenuItemViewModel("Second", typeof(SecondViewModel)),
+            new MenuItemViewModel("Wizard", typeof(WizardViewModel)), 
         });
 
         public IMvxCommand Navigate => new MvxCommand<MenuItemViewModel>(menuItem => ShowViewModel(menuItem.ViewModelType));

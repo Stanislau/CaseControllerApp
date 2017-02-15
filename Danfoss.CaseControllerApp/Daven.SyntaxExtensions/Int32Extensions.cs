@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Daven.SyntaxExtensions
 {
@@ -33,6 +34,11 @@ namespace Daven.SyntaxExtensions
         public static int SelfOr(this int? value, int replace)
         {
             return value.HasValue ? value.Value : replace;
+        }
+
+        public static int ParseToInt32(this string value)
+        {
+            return Int32.Parse(value);
         }
     }
 }
