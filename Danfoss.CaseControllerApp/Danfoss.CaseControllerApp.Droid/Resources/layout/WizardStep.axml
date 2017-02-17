@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+              android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="#999"
+        local:MvxBind="Text Title"
+        />
+    
+    <View 
+        android:id="@+id/pager"
+        android:background="#ff0000"
+        android:layout_width="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title"
+        android:layout_height="match_parent"
+        />
+    
+    <!--<ViewGroup 
+        android:id="@+id/contentContainer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/title"
+        android:layout_toLeftOf="@id/pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#eee"
+        />-->
+    
+</RelativeLayout>

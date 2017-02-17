@@ -10,12 +10,14 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
     {
         public override string Title { get; } = "Wizard!!";
 
-        private readonly List<IMvxPagedViewModel> _steps = new List<IMvxPagedViewModel>()
+        private readonly List<WizardStepViewModel> _steps = new List<WizardStepViewModel>()
         {
             new WizardApplicationTypeViewModel(),
             new WizardCaseTypeViewModel(),
             new WizardFoodTypeViewModel()
-        }; 
+        };
+
+        public List<WizardStepViewModel> Steps => _steps;
 
         public IMvxPagedViewModel GetDefaultViewModel()
         {
@@ -57,6 +59,11 @@ namespace Danfoss.CaseControllerApp.Core.ViewModels.Content
         }
 
         public string Help { get; set; } = "Some additional property";
+
+        public IMvxCommand ChangeHelp => new MvxCommand(() =>
+        {
+            Help += "1";
+        });
     }
 
     public class WizardCaseTypeViewModel : WizardStepViewModel

@@ -1,24 +1,22 @@
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Danfoss.CaseControllerApp.Core.ViewModels;
 using Danfoss.CaseControllerApp.Core.ViewModels.Content;
-using Danfoss.CaseControllerApp.Core.ViewModels.Root;
-using MvvmCross.Binding.BindingContext;
+using Danfoss.CaseControllerApp.Droid.Extensions;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
+using MvvmCross.Droid.Support.V4;
 
 namespace Danfoss.CaseControllerApp.Droid.Activities
 {
-    [MvxFragment(typeof(RootViewModel), Resource.Id.frameLayout)]
-    [Register("danfoss.casecontrollerapp.droid.activities.FirstFragment")]
-    public class FirstFragment : FragmentBase<FirstViewModel>
+    [Register("danfoss.casecontrollerapp.droid.activities.WizardCaseTypeFragment")]
+    public class WizardCaseTypeFragment : MvxFragment<WizardCaseTypeViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            return this.BindingInflate(Resource.Layout.FirstFragment, null);
+            return this.BindingInflate(Resource.Layout.WizardStep, null).SetWizardContent(Resource.Layout.WizardCaseType, this);
         }
     }
 }

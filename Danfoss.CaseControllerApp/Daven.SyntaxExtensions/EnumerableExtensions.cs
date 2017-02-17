@@ -228,5 +228,12 @@ namespace Daven.SyntaxExtensions
         {
             return self == null ? Enumerable.Empty<T>() : new[] {self};
         }
+
+        public static IEnumerable<T> GetReversed<T>(this IEnumerable<T> items)
+        {
+            var list = items.ToList();
+            list.Reverse();
+            return list;
+        }
     }
 }
